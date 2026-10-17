@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CRED ÎN EDUCAȚIE | Misiunea 4X – versiunea 7.2</title>
+<style>
+:root{--ink:#1f2a44;--muted:#63708a;--paper:#f6f8fc;--card:#fff;--line:#dce3ef;--accent:#6757d9;--accent2:#13a89e;--gold:#f0b429;--danger:#c0395a;--good:#16845b}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at top left,#e8e7ff 0,transparent 34%),radial-gradient(circle at top right,#d9f8f1 0,transparent 28%),var(--paper);font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--ink);min-height:100vh}
+button,input,select,textarea{font:inherit}button{cursor:pointer;border:0;border-radius:12px;padding:11px 16px;font-weight:750;transition:transform .15s,opacity .15s}button:hover{transform:translateY(-1px)}button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid #9b91ff;outline-offset:2px}
+.primary{background:var(--accent);color:#fff}.secondary{background:#eceaff;color:#4134a8}.teal{background:#d9f7f2;color:#08776f}.ghost{background:#eef1f7;color:var(--ink)}.danger{background:#ffeaee;color:#a52e4a}
+.wrap{max-width:1100px;margin:auto;padding:20px}.topbar{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:18px}.brand{display:flex;align-items:center;gap:12px}.logo{width:52px;height:52px;display:grid;place-items:center;border-radius:16px;background:linear-gradient(135deg,#6757d9,#13a89e);color:#fff;font-size:26px;box-shadow:0 8px 24px #6757d933}.eyebrow{text-transform:uppercase;letter-spacing:.13em;font-size:.73rem;font-weight:850;color:var(--accent)}h1,h2,h3,p{margin-top:0}h1{font-size:clamp(1.65rem,4vw,2.6rem);line-height:1.06;margin-bottom:7px}h2{font-size:1.35rem;margin-bottom:8px}h3{font-size:1.03rem;margin-bottom:7px}.sub{color:var(--muted);line-height:1.5;margin-bottom:0}.pill{display:inline-flex;align-items:center;gap:6px;padding:7px 11px;border-radius:999px;background:#fff;border:1px solid var(--line);font-weight:750;font-size:.84rem}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:clamp(18px,3vw,28px);box-shadow:0 12px 36px #293d6510}.hero{display:grid;grid-template-columns:1.2fr .8fr;gap:18px;align-items:stretch}.hero-art{background:linear-gradient(145deg,#28235f,#5145ba 55%,#168f92);color:#fff;position:relative;overflow:hidden;min-height:260px;display:flex;flex-direction:column;justify-content:space-between}.hero-art:after{content:"✦";position:absolute;font-size:170px;right:10px;top:5px;opacity:.12}.hero-art .big{font-size:4.5rem;line-height:1}.hero-art p{max-width:300px;color:#ecebff;line-height:1.5;margin-bottom:0}.hero-art .eyebrow{color:#c8fff3}.field{display:flex;flex-direction:column;gap:7px;margin:14px 0}.field label{font-weight:750;font-size:.92rem}.field input,.field select,.field textarea{width:100%;border:1px solid var(--line);border-radius:11px;padding:11px 12px;background:#fff;color:var(--ink)}.field textarea{min-height:80px;resize:vertical}.choices{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.choice{background:#fff;border:1.5px solid var(--line);text-align:left;color:var(--ink);padding:14px;border-radius:14px}.choice.selected{border-color:var(--accent);background:#f0eeff;box-shadow:0 0 0 2px #6757d922}.choice small{display:block;color:var(--muted);font-weight:500;margin-top:4px}.section{margin-top:18px}.gates{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.gate{border:1px solid var(--line);background:#fff;border-radius:18px;padding:16px;min-height:160px;display:flex;flex-direction:column;justify-content:space-between}.gate .emoji{font-size:2rem}.gate p{font-size:.88rem;color:var(--muted);line-height:1.4;margin:8px 0}.gate .state{font-size:.78rem;font-weight:800;color:var(--muted)}.gate.done{border-color:#8bd8c8;background:#effcf8}.gate.locked{opacity:.62}.bar{height:10px;background:#e9edf5;border-radius:999px;overflow:hidden}.bar span{display:block;height:100%;background:linear-gradient(90deg,var(--accent),var(--accent2));width:0;transition:width .3s}.progress-head{display:flex;justify-content:space-between;gap:10px;font-size:.86rem;font-weight:750;margin-bottom:8px}.question-top{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;align-items:center}.question{font-size:clamp(1.25rem,3vw,1.7rem);line-height:1.35;font-weight:800;margin:20px 0}.answers{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.answer{padding:15px;border:1.5px solid var(--line);background:#fff;color:var(--ink);text-align:left;min-height:58px}.answer.correct{border-color:#54b994;background:#e9fbf3}.answer.wrong{border-color:#e99aaa;background:#fff0f3}.feedback{padding:14px 16px;border-radius:13px;margin-top:14px;line-height:1.5}.feedback.good{background:#e7f8ef;color:#145c43}.feedback.bad{background:#fff0f3;color:#8d2941}.feedback.neutral{background:#eef2ff;color:#37308a}.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}.row.between{justify-content:space-between}.tag{font-size:.8rem;font-weight:800;padding:6px 9px;border-radius:8px;background:#f0eeff;color:#5143bc}.hint{color:var(--muted);font-size:.9rem;line-height:1.5}.divider{height:1px;background:var(--line);margin:18px 0}.summary-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.stat{padding:16px;background:#f7f8fc;border-radius:15px}.stat strong{display:block;font-size:1.7rem}.badge-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.badge{padding:14px 10px;text-align:center;border-radius:15px;border:1px solid var(--line);background:#fff}.badge .emoji{font-size:2rem}.badge.locked{filter:grayscale(1);opacity:.45}.badge b{display:block;margin-top:7px;font-size:.83rem}.small{font-size:.82rem;color:var(--muted)}.hide{display:none!important}.notice{border-left:4px solid var(--gold);padding:12px 14px;background:#fff9e7;border-radius:0 12px 12px 0;color:#725313;line-height:1.5}.custom-list{display:grid;gap:10px}.custom-item{border:1px solid var(--line);border-radius:14px;padding:13px}.custom-item input{width:100%;padding:9px;border:1px solid var(--line);border-radius:9px;margin:4px 0}.footer{text-align:center;color:var(--muted);font-size:.8rem;padding:22px 0 8px}
+
+
+.library-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:12px 0}
+.library-card,.report-panel,.report-card{border:1px solid var(--line);border-radius:14px;padding:14px;background:#fff}
+.library-card h4,.report-card h4{margin:0 0 6px}
+.library-card p,.report-card p{margin:5px 0}
+.report-panel{margin:12px 0}
+.report-list{display:grid;grid-template-columns:1fr;gap:10px;margin:12px 0}
+.metric-row{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin:10px 0}
+.metric{background:#f4f3ff;border-radius:10px;padding:10px}
+.metric strong{display:block;font-size:1.2rem;color:#5143bc}
+.report-table{width:100%;border-collapse:collapse;margin-top:10px;font-size:.92rem}
+.report-table th,.report-table td{padding:8px;text-align:left;border-bottom:1px solid var(--line)}
+.report-table th{background:#f6f7fb}
+@media(max-width:600px){.library-grid{grid-template-columns:1fr}.metric-row{grid-template-columns:repeat(2,minmax(0,1fr))}.report-table{font-size:.8rem}}
+.brand-credo{font-size:clamp(1rem,2.3vw,1.35rem);font-weight:950;letter-spacing:.075em;color:#5143bc;line-height:1.1;margin-bottom:5px}
+.footer-brand{display:inline-block;color:#5143bc;font-size:1rem;letter-spacing:.12em;margin-bottom:5px}
+.teacher-meta{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 14px}
+.custom-item{padding:16px}
+.editor-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 14px}
+.custom-item textarea{width:100%;padding:10px;border:1px solid var(--line);border-radius:9px;min-height:65px;margin:4px 0;background:#fff;color:var(--ink)}
+.custom-item select{width:100%;padding:9px;border:1px solid var(--line);border-radius:9px;margin:4px 0;background:#fff;color:var(--ink)}
+.option-line{display:grid;grid-template-columns:1fr auto;gap:6px;align-items:center}
+.option-line input{margin:3px 0}
+@media(max-width:600px){.teacher-meta,.editor-grid{grid-template-columns:1fr}#savedSets{width:100%}}
+@media(max-width:760px){.hero{grid-template-columns:1fr}.gates{grid-template-columns:repeat(2,1fr)}.badge-grid{grid-template-columns:repeat(2,1fr)}.summary-grid{grid-template-columns:1fr}.hero-art{min-height:210px}}
+@media(max-width:440px){.wrap{padding:12px}.choices,.answers{grid-template-columns:1fr}.gates{gap:8px}.gate{padding:12px;min-height:145px}}
+@media print{body{background:#fff}.topbar button,.footer{display:none!important}.panel{box-shadow:none;break-inside:avoid}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="topbar">
+    <div class="brand"><div class="logo">4X</div><div><div class="brand-credo">CRED ÎN EDUCAȚIE</div><div class="eyebrow">Joc educațional interdisciplinar</div><strong>Misiunea 4X</strong><div class="small">Salvatorii cunoașterii</div></div></div>
+    <div class="row"><span class="pill" id="scorePill">⭐ 0 puncte</span><button class="ghost" id="restartTop">↻ Reia jocul</button></div>
+  </header>
+
+  <main>
+    <section id="startScreen">
+      <div class="hero">
+        <div class="panel">
+          <div class="eyebrow">Misiunea ta începe aici</div>
+          <h1>Patru porți. Patru provocări. O singură echipă de salvatori.</h1>
+          <p class="sub">Cognitia este în pericol! Pentru a restabili echilibrul, trebuie să deschizi Porțile Numerelor, Cuvintelor, Naturii și Logicii. Gândește, verifică și explică.</p>
+          <div class="field"><label for="playerName">Numele exploratorului / echipei</label><input id="playerName" maxlength="40" placeholder="Ex.: Echipa Curioșilor"></div>
+          <div class="field"><label>Mod de joc</label><div class="choices"><button class="choice selected" data-mode="individual">🧭 Individual<small>Progres personal</small></button><button class="choice" data-mode="team">🤝 Pe echipe<small>Decideți și explicați împreună</small></button></div></div>
+          <div class="field"><label for="challengeLevel">Nivelul provocărilor</label><select id="challengeLevel"><option value="standard">Nivel de bază</option><option value="application">Nivel consolidat</option><option value="challenge">Nivel avansat</option></select><p id="levelNote" class="small">Alege nivelul de lucru.</p></div>
+          <button class="primary" id="startBtn">Începe misiunea →</button>
+        </div>
+        <div class="panel hero-art"><div><div class="eyebrow">Dosar secret · 04 porți</div><div class="big">✦</div><h2>Curajul de a gândi!</h2><p>Rezolvă prin alegere multiplă sau scrie răspunsul, în funcție de nivel avansat. Citește feedbackul, folosește indiciile și verifică strategia. La nivelul „Nivel avansat”, profesorul poate solicita justificarea orală a fiecărui răspuns.</p></div><div class="row"><span class="pill">🧠 Gândire</span><span class="pill">🔎 Descoperire</span><span class="pill">🤝 Colaborare</span></div></div>
+      </div>
+      <div class="section panel"><h2>Ce vei exersa?</h2><div class="gates">
+        <div class="gate"><div class="emoji">🔢</div><div><h3>Poarta Numerelor</h3><p>Calcule, operații și strategii matematice.</p><span class="state">3 provocări</span></div></div>
+        <div class="gate"><div class="emoji">📚</div><div><h3>Poarta Cuvintelor</h3><p>Substantive, verbe și înțelegerea enunțurilor.</p><span class="state">3 provocări</span></div></div>
+        <div class="gate"><div class="emoji">🌱</div><div><h3>Poarta Naturii</h3><p>Observarea fenomenelor și gândire științifică.</p><span class="state">3 provocări</span></div></div>
+        <div class="gate"><div class="emoji">🧩</div><div><h3>Poarta Logicii</h3><p>Deducție, reguli și rezolvare de probleme.</p><span class="state">3 provocări</span></div></div>
+      </div></div>
+    </section>
+
+    <section id="mapScreen" class="hide">
+      <div class="panel"><div class="row between"><div><div class="eyebrow">Harta Cognitiei</div><h1 id="welcomeTitle">Misiunea începe!</h1><p class="sub">Deschide porțile în ordinea dorită. Fiecare poartă are trei provocări.</p></div><span class="pill" id="progressPill">0 / 12 provocări</span></div><div class="section"><div class="progress-head"><span>Progresul misiunii</span><span id="progressText">0%</span></div><div class="bar"><span id="progressBar"></span></div></div></div>
+      <div class="section gates" id="gateCards"></div>
+      <div class="section panel"><div class="row between"><div><h2>Trusa exploratorului</h2><p class="sub">Ai acces la indicii și poți revizita provocările pentru a-ți îmbunătăți înțelegerea.</p></div><button class="secondary" id="showReflection">Deschide jurnalul de reflecție</button></div><div id="reflection" class="hide section"><div class="field"><label for="reflectionText">Ce strategie te-a ajutat cel mai mult?</label><textarea id="reflectionText" placeholder="Am observat că..."></textarea></div><div class="field"><label for="nextStep">Ce ai vrea să exersezi în continuare?</label><input id="nextStep" placeholder="Aș vrea să exersez..."></div><button class="teal" id="saveReflection">Salvează reflecția</button><span id="reflectionSaved" class="small"></span></div></div>
+    </section>
+
+    <section id="questionScreen" class="hide">
+      <div class="panel">
+        <div class="question-top"><button class="ghost" id="backMap">← Harta misiunii</button><span class="tag" id="questionGate">Poarta Numerelor</span><span class="pill" id="questionCount">1 / 3</span></div>
+        <div class="section"><div class="progress-head"><span id="gateProgressLabel">Progresul porții</span><span id="gateProgressText">0%</span></div><div class="bar"><span id="gateProgressBar"></span></div></div>
+        <div class="eyebrow" id="questionType">Nivel avansat 1</div><div class="question" id="questionText"></div><div class="notice" id="curriculumNote"></div>
+        <div id="answerArea" class="answers"></div>
+        <div class="field hide" id="textAnswerWrap"><label for="textAnswer">Scrie răspunsul</label><input id="textAnswer" autocomplete="off" placeholder="Răspunsul tău"><button class="primary" id="submitText">Verifică răspunsul</button></div>
+        <div class="row section"><button class="secondary" id="hintBtn">💡 Cere un indiciu</button><span class="small" id="hintStatus">Indiciile te ajută să continui.</span></div>
+        <div id="hintBox" class="feedback neutral hide"></div><div id="feedback" aria-live="polite"></div>
+        <div class="divider"></div><div class="row between"><span class="small" id="pointsEarned">Puncte la această nivel avansat: 0</span><button class="primary hide" id="nextQuestion">Continuă →</button></div>
+      </div>
+    </section>
+
+    <section id="endScreen" class="hide">
+      <div class="panel">
+        <div class="eyebrow">Misiune încheiată</div><h1 id="endTitle">Ai redeschis porțile cunoașterii!</h1><p class="sub" id="endSubtitle"></p>
+        <div class="summary-grid section"><div class="stat"><span class="small">Puncte obținute</span><strong id="finalScore">0</strong></div><div class="stat"><span class="small">Provocări rezolvate</span><strong id="finalSolved">0/12</strong></div><div class="stat"><span class="small">Porți explorate</span><strong id="finalGates">0/4</strong></div></div>
+        <div class="section"><h2>Insignele tale</h2><div class="badge-grid" id="badgeGrid"></div></div>
+        <div class="section notice"><strong>Următorul pas:</strong> explică unui coleg o strategie pe care ai folosit-o și o greșeală din care ai învățat. Profesorul poate nota separat dovezile de învățare observate; punctajul din joc nu reprezintă o notă școlară.</div>
+        <div class="section row"><button class="primary" id="playAgain">Joacă din nou</button><button class="secondary" id="printCertificate">Tipărește diploma</button><button class="ghost" id="backMapEnd">Revino la hartă</button></div>
+      </div>
+    </section>
+
+    <section id="teacherScreen" class="hide section">
+      <div class="panel">
+        <div class="row between"><div><div class="eyebrow">CRED ÎN EDUCAȚIE · Spațiul profesorului</div><h2>Atelierul de creare a jocurilor</h2><p class="sub">Configurează jocul, creează itemi și salvează seturi reutilizabile pentru lecții diferite. Modificările se păstrează local în acest browser; folosește exportul JSON pentru o copie de siguranță.</p></div><button class="ghost" id="closeTeacher">Închide</button></div>
+        <div class="teacher-meta">
+          <div class="field"><label for="metaGrade">Clasa</label><select id="metaGrade"><option>Clasa pregătitoare</option><option>Clasa I</option><option>Clasa a II-a</option><option>Clasa a III-a</option><option selected>Clasa a IV-a</option></select></div>
+          <div class="field"><label for="metaSubject">Disciplina / aria</label><select id="metaSubject"><option>Matematică</option><option>Limba și literatura română</option><option>Științe ale naturii</option><option>Matematică și explorarea mediului</option><option>Dezvoltare personală</option><option>Interdisciplinar</option><option>Altă disciplină</option></select></div>
+          <div class="field"><label for="metaTheme">Tema / unitatea de învățare</label><input id="metaTheme" placeholder="Ex.: Ordinea efectuării operațiilor"></div>
+          <div class="field"><label for="metaCompetency">Competența specifică vizată (opțional)</label><input id="metaCompetency" placeholder="Introduceți codul și formularea verificate în programă"></div>
+        </div>
+        <div class="notice section"><strong>Diferentiere funcțională:</strong> fiecare item are un nivel editabil. Pentru Nivel de bază se recomandă itemii Ușor/Mediu; pentru Nivel consolidat, Mediu/Avansat; pentru Nivel avansat, Avansat. Profesorul poate ajusta nivelul fiecărui item din editor.</div><div class="field"><label for="gateSelect">Poarta în care lucrezi</label><select id="gateSelect"></select></div>
+        <div class="row between section"><div><h3>Itemii jocului</h3><p class="small">Poți modifica variantele, răspunsul corect, explicația, indiciul și dificultatea.</p></div><button class="primary" id="addQuestion">＋ Adaugă un item</button></div>
+        <div id="customQuestions" class="custom-list section"></div>
+        <div class="divider"></div>
+        <h3>Seturi de joc</h3>
+        <div class="field"><label for="setName">Numele setului</label><input id="setName" placeholder="Ex.: Recapitulare – operații și probleme"></div>
+        <div class="row">
+          <button class="primary" id="saveCustom">Salvează modificările</button>
+          <button class="secondary" id="saveSet">Salvează ca set nou</button>
+          <select id="savedSets" aria-label="Seturi salvate"><option value="">Alege un set salvat</option></select>
+          <button class="teal" id="loadSet">Încarcă setul</button>
+        </div>
+        <div class="row section">
+          <button class="secondary" id="exportSet">Exportă setul (.json)</button>
+          <button class="secondary" id="importSet">Importă set (.json)</button>
+          <input id="importFile" type="file" accept=".json,application/json" class="hide">
+          <button class="ghost" id="resetCustom">Restaurează jocul inițial</button>
+        </div>
+        <p id="customStatus" class="small section" aria-live="polite"></p>
+        <div class="divider"></div>
+        <div class="row between"><div><h3>Biblioteca mea de jocuri</h3><p class="small">Caută seturile salvate și încarcă-le pentru o altă lecție.</p></div><button class="secondary" id="refreshLibrary">Actualizează biblioteca</button></div>
+        <div class="field"><label for="librarySearch">Caută după nume, clasă, disciplină sau temă</label><input id="librarySearch" placeholder="Ex.: clasa a IV-a, fracții, română"></div>
+        <div id="libraryCards" class="library-grid"></div>
+        <div class="divider"></div>
+        <div class="row between"><div><h3>Raportul profesorului</h3><p class="small">Vezi rezultatele sesiunii curente și istoricul sesiunilor înregistrate pe acest dispozitiv.</p></div><button class="secondary" id="refreshReports">Actualizează raportul</button></div>
+        <div id="currentReport" class="report-panel"></div>
+        <div id="historyReports" class="report-list"></div>
+        <div class="row section"><button class="secondary" id="exportReport">Exportă raportul (.csv)</button><button class="ghost" id="clearReports">Șterge istoricul local</button></div>
+        <div class="notice section">Salvarea locală funcționează în browserul și pe dispozitivul în care lucrezi. Pentru transferul seturilor, folosește exportul/importul JSON. Rapoartele sunt orientative, se păstrează local și nu înlocuiesc evaluarea pedagogică a profesorului.</div>
+      </div>
+    </section>
+  </main>
+  <div class="section row between"><button class="ghost" id="teacherToggle">⚙ Spațiul profesorului</button><span class="small">Versiune demonstrativă · fără cont și fără colectare de date</span></div>
+  <footer class="footer"><strong class="footer-brand">CRED ÎN EDUCAȚIE</strong><br>Misiunea 4X · Învață, verifică, explică, progresează.</footer>
+</div>
+
+<script>
+/* Compatibilitate: unele browsere integrate nu implementează structuredClone.
+   Fără acest fallback, inițializarea se oprea înainte de atașarea butoanelor. */
+if (typeof window.structuredClone !== "function") {
+  window.structuredClone = function(value) {
+    return JSON.parse(JSON.stringify(value));
+  };
+}
+
+const originalGates = [
+ {id:"numbers",name:"Poarta Numerelor",emoji:"🔢",desc:"Calcule, operații și strategii matematice.",curriculum:"Focus didactic: efectuarea operațiilor cu numere naturale și respectarea ordinii operațiilor; competențele specifice exacte se verifică în programa în vigoare.",badge:"Arhitectul numerelor",badgeEmoji:"🏅",questions:[
+  {type:"Calcul",q:"Calculează: 360 : 9 + 24 × 3",options:["112","72","48","128"],answer:"112",explain:"Mai întâi efectuăm împărțirea și înmulțirea: 360 : 9 = 40, iar 24 × 3 = 72. Apoi adunăm: 40 + 72 = 112.",hint:"Efectuează împărțirea și înmulțirea înaintea adunării.",correctValue:"112"},
+  {type:"Ordinea operațiilor",q:"Calculează: 120 − 4 × 15",options:["60","1 740","1 800","100"],answer:"60",explain:"Înmulțirea se efectuează înaintea scăderii: 4 × 15 = 60, apoi 120 − 60 = 60.",hint:"Ce operație se efectuează prima, înmulțirea sau scăderea?"},
+  {type:"Problemă",q:"În 8 cutii sunt așezate în mod egal 144 de creioane. Câte creioane sunt în fiecare cutie?",options:["16","18","19","20"],answer:"18",explain:"Împărțim numărul total de creioane la numărul de cutii: 144 : 8 = 18.",hint:"Împarte totalul la numărul de cutii."}
+ ]},
+ {id:"words",name:"Poarta Cuvintelor",emoji:"📚",desc:"Substantive, verbe și înțelegerea enunțurilor.",curriculum:"Focus didactic: identificarea unor părți de vorbire și extragerea informațiilor explicite din enunț; codurile competențelor se stabilesc după programa în vigoare.",badge:"Exploratorul cuvintelor",badgeEmoji:"📖",questions:[
+  {type:"Părți de vorbire",q:"În enunțul „Mara a descoperit o hartă veche”, care este verbul?",options:["Mara","descoperit","hartă","veche"],answer:"descoperit",explain:"„A descoperit” este forma verbală din enunț. Verbul exprimă acțiunea; în analiza școlară, identificăm forma verbală completă „a descoperit”.",hint:"Caută cuvântul care exprimă acțiunea."},
+  {type:"Substantive",q:"În enunțul „Elevii au descoperit cheia misterioasă”, câte substantive comune apar?",options:["Unul","Două","Trei","Patru"],answer:"Două",explain:"Substantivele comune sunt „elevii” și „cheia”.",hint:"Caută denumirile ființelor și lucrurilor."},
+  {type:"Înțelegerea enunțului",q:"Citește: „După ploaie, Luca a observat un curcubeu.” Ce a observat Luca?",options:["Un nor","Un curcubeu","O frunză","Un fulger"],answer:"Un curcubeu",explain:"Răspunsul este precizat direct în enunț: Luca a observat un curcubeu.",hint:"Recitește enunțul și caută obiectul observat."}
+ ]},
+ {id:"nature",name:"Poarta Naturii",emoji:"🌱",desc:"Observarea fenomenelor și gândire științifică.",curriculum:"Focus didactic: observarea, clasificarea și explicarea unor fenomene și comportamente responsabile față de mediu; se verifică programa disciplinei și unitatea parcursă.",badge:"Prietenul naturii",badgeEmoji:"🌿",questions:[
+  {type:"Ciclul apei",q:"Care este ordinea corectă a acestor etape ale ciclului apei?",options:["Evaporare → condensare → precipitații","Condensare → evaporare → precipitații","Precipitații → condensare → evaporare","Evaporare → precipitații → condensare"],answer:"Evaporare → condensare → precipitații",explain:"Apa se evaporă, vaporii se răcesc și se condensează, apoi apa revine la suprafața Pământului sub formă de precipitații. Ciclul continuă.",hint:"Gândește-te ce se întâmplă cu apa încălzită de Soare."},
+  {type:"Clasificare",q:"Care dintre următoarele este o sursă de lumină naturală?",options:["Lanterna","Soarele","Becul","Ecranul tabletei"],answer:"Soarele",explain:"Soarele emite lumină în mod natural. Lanterna, becul și ecranul sunt surse artificiale de lumină.",hint:"Caută sursa de lumină care există în natură."},
+  {type:"Mediu",q:"Care acțiune contribuie direct la reducerea deșeurilor?",options:["Aruncarea tuturor deșeurilor laolaltă","Folosirea obiectelor de unică folosință cât mai des","Colectarea separată a materialelor reciclabile","Lăsarea ambalajelor în natură"],answer:"Colectarea separată a materialelor reciclabile",explain:"Colectarea separată facilitează reciclarea unor materiale și reduce cantitatea de deșeuri trimise la depozitare.",hint:"Alege acțiunea care permite recuperarea unor materiale."}
+ ]},
+ {id:"logic",name:"Poarta Logicii",emoji:"🧩",desc:"Deducție, reguli și rezolvare de probleme.",curriculum:"Focus didactic: formularea și verificarea unor ipoteze, identificarea regulilor și rezolvarea de probleme; competențele exacte se validează în funcție de contextul lecției.",badge:"Maestrul logicii",badgeEmoji:"🧩",questions:[
+  {type:"Șir numeric",q:"Ce număr urmează în șirul 5, 10, 20, 40, ...?",options:["45","60","80","100"],answer:"80",explain:"Fiecare termen se obține înmulțind termenul anterior cu 2: 40 × 2 = 80.",hint:"Compară fiecare termen cu cel care îl precedă."},
+  {type:"Deducție",q:"Un număr este mai mare decât 30 și mai mic decât 40. Este multiplu de 3 și de 4. Care este numărul?",options:["32","34","36","39"],answer:"36",explain:"36 este cuprins între 30 și 40 și se împarte exact atât la 3, cât și la 4.",hint:"Caută un multiplu comun al numerelor 3 și 4 între 30 și 40."},
+  {type:"Problemă logică",q:"Cartea verde este înaintea celei albastre, iar cartea albastră este înaintea celei roșii. Care este ordinea cărților?",options:["Albastră, verde, roșie","Verde, albastră, roșie","Roșie, verde, albastră","Verde, roșie, albastră"],answer:"Verde, albastră, roșie",explain:"Condițiile stabilesc ordinea: verde înaintea albastrei, iar albastra înaintea roșiei. Prin urmare, ordinea este verde, albastră, roșie.",hint:"Transformă fiecare indiciu într-o relație de ordine: verde înaintea albastrului, albastru înaintea roșului."}
+ ]}
+];
+const builtInExerciseDesign = {
+ "Calculează: 360 : 9 + 24 × 3": {difficulty:"Avansat",context:"Pentru un atelier, se pregătesc 360 de materiale, împărțite egal în 9 cutii. Se mai adaugă 24 de pachete cu câte 3 materiale. Expresia arată câte materiale sunt în total."},
+ "Calculează: 120 − 4 × 15": {difficulty:"Mediu",context:"Într-un depozit sunt 120 de caiete. Se distribuie 4 seturi a câte 15 caiete. Câte caiete rămân?"},
+ "În 8 cutii sunt așezate în mod egal 144 de creioane. Câte creioane sunt în fiecare cutie?": {difficulty:"Ușor",context:"Un învățător împarte 144 de creioane în mod egal în 8 cutii pentru centrele de activitate."},
+ "În enunțul „Mara a descoperit o hartă veche”, care este verbul?": {difficulty:"Mediu",context:"În jurnalul unei excursii, elevii identifică acțiunile descrise pentru a relata corect ce s-a întâmplat."},
+ "În enunțul „Elevii au descoperit cheia misterioasă”, câte substantive comune apar?": {difficulty:"Avansat",context:"La revizuirea unui text de aventură, verifică ce cuvinte denumesc ființe sau lucruri."},
+ "Citește: „După ploaie, Luca a observat un curcubeu.” Ce a observat Luca?": {difficulty:"Ușor",context:"Citești o notă din jurnalul de observații al unui copil și extragi informația precizată direct."},
+ "Care este ordinea corectă a acestor etape ale ciclului apei?": {difficulty:"Avansat",context:"Într-un poster despre circuitul apei în natură, trebuie așezate corect etapele observate în natură."},
+ "Care dintre următoarele este o sursă de lumină naturală?": {difficulty:"Ușor",context:"Pregătești o prezentare despre sursele de lumină întâlnite acasă și în natură."},
+ "Care acțiune contribuie direct la reducerea deșeurilor?": {difficulty:"Mediu",context:"Clasa organizează o acțiune de colectare selectivă și trebuie să aleagă comportamentul potrivit."},
+ "Ce număr urmează în șirul 5, 10, 20, 40, ...?": {difficulty:"Ușor",context:"Un robot educațional se deplasează pe un traseu numerotat după o regulă. Descoperă regula pentru a afla următorul număr."},
+ "Un număr este mai mare decât 30 și mai mic decât 40. Este multiplu de 3 și de 4. Care este numărul?": {difficulty:"Avansat",context:"Pentru un cod de acces, trebuie găsit numărul care respectă simultan toate condițiile date."},
+ "Cartea verde este înaintea celei albastre, iar cartea albastră este înaintea celei roșii. Care este ordinea cărților?": {difficulty:"Mediu",context:"Așază trei cărți pe raft respectând cele două indicii primite de la bibliotecar."}
+};
+originalGates.forEach(g=>g.questions.forEach(q=>{const design=builtInExerciseDesign[q.q];q.difficulty=design?.difficulty||q.difficulty||"Mediu";q.context=design?.context||q.context||"Aplică ceea ce ai învățat într-o situație de viață cotidiană."}));
+const functionalQuestionBank = {"numbers": [{"type": "Calcul în context", "difficulty": "Ușor", "kind": "text", "q": "La un atelier sunt 6 mese. Pe fiecare masă se așază câte 8 creioane. Câte creioane sunt necesare în total?", "options": [], "answer": "48", "explain": "Sunt 6 grupe egale de câte 8 creioane: 6 × 8 = 48.", "hint": "Reprezintă cele 6 mese ca 6 grupe egale.", "context": "Organizarea materialelor pentru centrele de activitate."}, {"type": "Măsurători și bani", "difficulty": "Mediu", "kind": "choice", "q": "Un caiet costă 7 lei. Cât plătești pentru 4 caiete și cât rest primești de la 50 de lei?", "options": ["22 lei", "28 lei", "32 lei", "38 lei"], "answer": "22 lei", "explain": "4 × 7 = 28 lei. Restul este 50 − 28 = 22 lei.", "hint": "Calculează mai întâi costul celor 4 caiete, apoi scade din 50.", "context": "Cumpărături pentru rechizite."}, {"type": "Problemă cu două operații", "difficulty": "Avansat", "kind": "text", "q": "Biblioteca primește 7 pachete cu câte 24 de cărți și distribuie apoi 36 de cărți claselor. Câte cărți rămân? Scrie doar numărul.", "options": [], "answer": "132", "explain": "7 × 24 = 168 de cărți; 168 − 36 = 132 de cărți.", "hint": "Află mai întâi câte cărți au sosit, apoi scade numărul distribuit.", "context": "Inventarierea cărților din biblioteca clasei."}], "words": [{"type": "Identificare în context", "difficulty": "Ușor", "kind": "text", "q": "Citește: „Mara plantează lalele în grădină.” Scrie verbul din enunț.", "options": [], "answer": "plantează", "explain": "„Plantează” exprimă acțiunea realizată de Mara.", "hint": "Întreabă-te ce face Mara.", "context": "Redactarea unei fișe de observație despre grădina școlii."}, {"type": "Revizuirea unui text", "difficulty": "Mediu", "kind": "choice", "q": "În propoziția „Copiii au construit un adăpost pentru păsări”, care este grupul verbal?", "options": ["Copiii", "au construit", "un adăpost", "pentru păsări"], "answer": "au construit", "explain": "Forma verbală este „au construit”; exprimă acțiunea realizată de copii.", "hint": "Caută cuvintele care arată ce au făcut copiii.", "context": "Descrierea unei activități din proiectul clasei."}, {"type": "Înțelegere și inferență", "difficulty": "Avansat", "kind": "choice", "q": "Citește: „Ana și-a luat umbrela, deși cerul era încă senin. La scurt timp, vântul s-a întețit și au apărut norii.” Ce putem deduce cel mai bine?", "options": ["Ana se pregătise pentru o posibilă schimbare a vremii.", "Ana voia să ude florile.", "Era deja noapte.", "Umbrela era stricată."], "answer": "Ana se pregătise pentru o posibilă schimbare a vremii.", "explain": "Indiciile despre umbrelă, vânt și nori susțin această deducție, fără a o afirma direct.", "hint": "Leagă alegerea Anei de schimbările vremii descrise ulterior.", "context": "Citirea unui text scurt și formularea unei concluzii pe baza indiciilor."}], "nature": [{"type": "Nivel consolidat științifică", "difficulty": "Ușor", "kind": "choice", "q": "Ai observat că o baltă s-a micșorat într-o zi însorită. Ce proces explică în principal acest lucru?", "options": ["Evaporarea", "Înghețarea", "Condensarea", "Solidificarea"], "answer": "Evaporarea", "explain": "Căldura favorizează trecerea unei părți din apa lichidă în vapori.", "hint": "Gândește-te ce se întâmplă cu apa când este încălzită de Soare.", "context": "Observarea schimbărilor apei din curtea școlii."}, {"type": "Decizie responsabilă", "difficulty": "Mediu", "kind": "choice", "q": "Clasa organizează o activitate în parc. Ce alegere reduce cel mai bine cantitatea de deșeuri?", "options": ["Folosirea sticlelor reutilizabile și colectarea selectivă", "Lăsarea ambalajelor pe iarbă", "Folosirea mai multor pahare de unică folosință", "Aruncarea tuturor deșeurilor în același loc"], "answer": "Folosirea sticlelor reutilizabile și colectarea selectivă", "explain": "Reutilizarea reduce deșeurile, iar colectarea selectivă ajută la reciclarea materialelor potrivite.", "hint": "Alege varianta care previne deșeurile și permite sortarea lor.", "context": "Planificarea unei ieșiri responsabile în natură."}, {"type": "Interpretarea unei observații", "difficulty": "Avansat", "kind": "choice", "q": "Două plante identice sunt udate la fel. Una stă la lumină, iar cealaltă într-un dulap întunecos. Ce trebuie să păstreze elevii la fel pentru ca observația să fie corectă?", "options": ["Tipul plantei, cantitatea de apă și ghiveciul", "Culoarea etichetelor", "Locul în care stă fiecare plantă", "Numărul de elevi care privesc plantele"], "answer": "Tipul plantei, cantitatea de apă și ghiveciul", "explain": "Pentru a compara efectul luminii, celelalte condiții importante trebuie menținute cât mai asemănătoare.", "hint": "Schimbă un singur factor investigat și menține constante celelalte condiții.", "context": "Planificarea unei investigații simple despre condițiile de creștere ale plantelor."}], "logic": [{"type": "Șir numeric", "difficulty": "Ușor", "kind": "text", "q": "Completează șirul: 3, 6, 9, 12, __. Scrie numărul lipsă.", "options": [], "answer": "15", "explain": "Fiecare termen crește cu 3: 12 + 3 = 15.", "hint": "Compară doi termeni vecini: cu cât crește șirul?", "context": "Descoperirea regulii unui cod numeric."}, {"type": "Planificare", "difficulty": "Mediu", "kind": "choice", "q": "La un stand, întâi se așază cărțile, apoi etichetele. Etichetele se pun înaintea decorului. Care este o ordine corectă?", "options": ["Cărți → etichete → decor", "Decor → cărți → etichete", "Etichete → decor → cărți", "Cărți → decor → etichete"], "answer": "Cărți → etichete → decor", "explain": "Cărțile trebuie să fie înaintea etichetelor, iar etichetele înaintea decorului.", "hint": "Transformă fiecare indiciu într-o relație de ordine.", "context": "Organizarea unui stand pentru târgul clasei."}, {"type": "Deducție cu mai multe condiții", "difficulty": "Avansat", "kind": "text", "q": "Un număr este mai mare decât 20 și mai mic decât 30. Este par și multiplu de 3. Care este numărul? Scrie numărul.", "options": [], "answer": "24", "explain": "Numerele pare dintre 21 și 29 sunt 22, 24, 26 și 28. Dintre acestea, doar 24 este multiplu de 3.", "hint": "Scrie numerele pare dintre 21 și 29, apoi verifică multiplii lui 3.", "context": "Descifrarea unui cod pe baza mai multor indicii."}]};
+
+originalGates.forEach(g=>{
+  const additions=functionalQuestionBank[g.id]||[];
+  additions.forEach((q,i)=>g.questions.push({...q,id:`${g.id}-functional-${i+1}`}));
+});
+
+let gates = structuredClone(originalGates), mode="individual", level="standard", player="", score=0, current=null, answered={}, hintsUsed={}, customDraft=[], sessionId=null, sessionRecorded=false, sessionStartedAt=null;
+const $=id=>document.getElementById(id);
+function saveState(){try{localStorage.setItem("misiunea4x_state",JSON.stringify({gates,mode,level,player,score,answered,hintsUsed}));}catch(e){}}
+function loadCustom(){
+ try{
+  const c=localStorage.getItem("misiunea4x_custom");
+  if(c){
+   gates=JSON.parse(c);
+   // Migrare: păstrează itemii editați de profesor și adaugă exercițiile funcționale noi lipsă.
+   gates.forEach(g=>{
+    const defaults=originalGates.find(x=>x.id===g.id);
+    if(!defaults)return;
+    if(!Array.isArray(g.questions))g.questions=[];
+    const knownIds=new Set(g.questions.map(q=>q.id).filter(Boolean));
+    defaults.questions.filter(q=>q.id&&!knownIds.has(q.id)).forEach(q=>g.questions.push(structuredClone(q)));
+   });
+  }
+ }catch(e){gates=structuredClone(originalGates)}
+}
+function showOnly(id){["startScreen","mapScreen","questionScreen","endScreen","teacherScreen"].forEach(x=>$(x).classList.toggle("hide",x!==id));}
+function updateScore(){ $("scorePill").textContent=`⭐ ${score} puncte`; }
+function visibleIndices(g){return g.questions.map((q,i)=>({q,i})).filter(({q})=>{const d=(q.difficulty||"Mediu").toLocaleLowerCase("ro");if(level==="standard")return d==="ușor"||d==="mediu";if(level==="application")return d==="mediu"||d==="avansat";return d==="avansat";}).map(x=>x.i)}
+function totalCount(){return gates.reduce((s,g)=>s+visibleIndices(g).length,0)}
+function solvedCount(){return gates.reduce((sum,g)=>sum+visibleIndices(g).filter(i=>answered[g.id+"-"+i]?.correct).length,0)}
+function gateSolved(g){const ids=visibleIndices(g);return ids.length>0&&ids.every(i=>answered[g.id+"-"+i]?.correct)}
+function startGame(){
+ player=$("playerName").value.trim()||(mode==="team"?"Echipa Curioșilor":"Explorator");
+ level=$("challengeLevel").value;score=0;answered={};hintsUsed={};sessionId="s"+Date.now();sessionRecorded=false;sessionStartedAt=new Date().toISOString();
+ const total=totalCount();
+ updateScore();$("welcomeTitle").textContent=`Succes, ${player}!`;
+ $("levelNote").textContent=level==="standard"?"Nivel de bază: rezolvă provocările și folosește indiciile când ai nevoie.":level==="application"?"Nivel consolidat: explică strategia și verifică fiecare răspuns.":"Nivel avansat: justifică raționamentul și caută mai multe căi de rezolvare.";
+ showOnly("mapScreen");renderMap();saveState();
+}
+function levelApplies(q){
+ const d=(q.difficulty||"Mediu").toLocaleLowerCase("ro");
+ if(level==="standard") return d==="ușor"||d==="mediu";
+ if(level==="application") return d==="mediu"||d==="avansat";
+ return d==="avansat";
+}
+function renderMap(){
+ const all=totalCount(),solved=solvedCount(),pct=Math.round(solved/Math.max(all,1)*100);
+ $("progressPill").textContent=`${solved} / ${all} provocări`; $("progressText").textContent=pct+"%";$("progressBar").style.width=pct+"%";
+ $("gateCards").innerHTML=gates.map(g=>{const ids=visibleIndices(g),done=ids.filter(i=>answered[g.id+"-"+i]?.correct).length;return `<div class="gate ${gateSolved(g)?"done":""}"><div class="row between"><span class="emoji">${g.emoji}</span><span class="state">${done}/${ids.length}</span></div><div><h3>${g.name}</h3><p>${g.desc}</p><p class="small">${ids.length} provocări pentru nivelul ales</p><button class="${gateSolved(g)?"teal":"primary"}" data-gate="${g.id}">${gateSolved(g)?"Revizuiește":"Deschide poarta"} →</button></div></div>`}).join("");
+ document.querySelectorAll("[data-gate]").forEach(b=>b.addEventListener("click",()=>{const g=gates.find(x=>x.id===b.dataset.gate);const ids=visibleIndices(g);if(ids.length)openGate(g.id,ids[0]);else{$("levelNote").textContent="Nu există itemi pentru acest nivel în această poartă. Modifică dificultatea itemilor în Spațiul profesorului."}}));
+ if(solved===all && all>0){recordSessionReport();$("endSubtitle").textContent=`${player}, ai parcurs toate cele ${all} provocări. Fiecare explicație te ajută să consolidezi ceea ce ai învățat.`;showOnly("endScreen");renderEnd();}
+ updateScore();
+}
+function openGate(gid,index){current={gid,index};showOnly("questionScreen");renderQuestion();}
+function renderQuestion(){
+ const g=gates.find(x=>x.id===current.gid),q=g.questions[current.index],key=g.id+"-"+current.index,rec=answered[key];
+ const ids=visibleIndices(g),position=ids.indexOf(current.index)+1;
+ $("questionGate").textContent=g.emoji+" "+g.name;
+ $("questionCount").textContent=`Nivel avansata ${position} din ${ids.length}`;
+ $("questionType").textContent=(q.type||"Nivel avansat")+" · "+(q.difficulty||"Mediu");
+ $("questionText").textContent=q.q;
+ $("curriculumNote").textContent=(q.context?"Context practic: "+q.context+" ":"")+(g.curriculum||"Obiectiv: rezolvă cerința și verifică strategia folosită.");
+ const done=ids.filter(i=>answered[g.id+"-"+i]?.correct).length;
+ $("gateProgressLabel").textContent="Progresul porții";
+ $("gateProgressText").textContent=Math.round(done/Math.max(ids.length,1)*100)+"%";
+ $("gateProgressBar").style.width=(done/Math.max(ids.length,1)*100)+"%";
+ const isText=q.kind==="text"||!q.options||q.options.length===0;
+ $("answerArea").classList.toggle("hide",isText);
+ $("textAnswerWrap").classList.toggle("hide",!isText);
+ if(isText){
+   $("textAnswer").value=rec?.last||"";
+   $("textAnswer").disabled=!!rec?.correct;
+   $("submitText").disabled=!!rec?.correct;
+   $("textAnswer").placeholder=q.answer&&/^\d+$/.test(q.answer)?"Introdu numărul":"Scrie răspunsul";
+ }else{
+   $("answerArea").innerHTML=q.options.map(o=>`<button class="answer ${rec?(o===q.answer?"correct":(rec.last===o?"wrong":"")):""}" data-answer="${encodeURIComponent(o)}" ${rec?.correct?"disabled":""}>${escapeHtml(o)}</button>`).join("");
+   document.querySelectorAll("[data-answer]").forEach(b=>b.addEventListener("click",()=>checkAnswer(decodeURIComponent(b.dataset.answer))));
+ }
+ $("feedback").innerHTML=rec?feedbackHtml(q,rec):"";
+ $("nextQuestion").classList.toggle("hide",!rec?.correct);
+ $("pointsEarned").textContent=`Puncte la această nivel avansat: ${rec?.points||0}`;
+ const used=hintsUsed[key];$("hintBtn").disabled=!!used||!!rec?.correct;
+ $("hintStatus").textContent=used?"Indiciul a fost consultat.":"Indiciu disponibil";
+ $("hintBox").classList.toggle("hide",!used);$("hintBox").textContent=used?q.hint:"";
+ $("nextQuestion").textContent=ids.indexOf(current.index)<ids.length-1?"Următoarea nivel avansat →":"Înapoi la hartă →";
+}
+function feedbackHtml(q,rec){if(rec.correct)return `<div class="feedback good"><strong>Corect!</strong> ${q.explain}<br><span class="small">Ai obținut ${rec.points} puncte.</span></div>`;return `<div class="feedback bad"><strong>Mai încearcă.</strong> ${q.explain.includes("112")?"Recalculează pas cu pas și verifică fiecare operație.":"Recitește cerința și folosește indiciul dacă ai nevoie."} Răspunsul nu a fost încă validat; poți încerca din nou.</div>`}
+function normalizeAnswer(value){
+ return String(value??"").trim().toLocaleLowerCase("ro").normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/[.,!?;:]/g,"").replace(/\s+/g," ");
+}
+function checkAnswer(value){
+ const g=gates.find(x=>x.id===current.gid),q=g.questions[current.index],key=g.id+"-"+current.index;
+ const correct=normalizeAnswer(value)===normalizeAnswer(q.answer);
+ let prev=answered[key]||{points:0,attempts:0};
+ prev.attempts++;prev.last=value;
+ if(correct&&!prev.correct){prev.correct=true;prev.points=10+(prev.attempts===1?5:0);score+=prev.points;}
+ answered[key]=prev;saveState();updateScore();renderQuestion();
+ if(!correct){
+  $("feedback").innerHTML=`<div class="feedback bad"><strong>Mai încearcă!</strong> Răspunsul nu este încă cel așteptat. Recitește cerința, folosește indiciul și verifică pașii.</div>`;
+  document.querySelectorAll("[data-answer]").forEach(b=>{if(normalizeAnswer(decodeURIComponent(b.dataset.answer))===normalizeAnswer(value))b.classList.add("wrong")});
+ } else {
+  $("feedback").innerHTML=`<div class="feedback good"><strong>Corect!</strong> ${escapeHtml(q.explain||"Ai rezolvat corect.")}<br><span class="small">Ai obținut ${prev.points} puncte.</span></div>`;
+ }
+}
+function submitTextAnswer(){
+ const val=$("textAnswer").value.trim();
+ if(!val){$("feedback").innerHTML='<div class="feedback neutral">Scrie un răspuns înainte de verificare.</div>';return;}
+ checkAnswer(val);
+}
+function nextQuestion(){
+ const g=gates.find(x=>x.id===current.gid);
+ if(!g)return;
+ const ids=visibleIndices(g),pos=ids.indexOf(current.index);
+ if(pos>=0&&pos<ids.length-1){openGate(g.id,ids[pos+1]);return;}
+ // La ultima nivel avansat a portii, revenim la harta; daca toate itemurile nivelului sunt corecte, incheiem misiunea.
+ if(solvedCount()>=totalCount() && totalCount()>0){
+   if(!sessionRecorded)recordSession();
+   renderEnd();showOnly("endScreen");saveState();return;
+ }
+ showOnly("mapScreen");renderMap();saveState();
+}
+function renderEnd(){ $("finalScore").textContent=score;$("finalSolved").textContent=`${solvedCount()}/${totalCount()}`;$("finalGates").textContent=`${gates.filter(g=>visibleIndices(g).length>0&&gateSolved(g)).length}/${gates.filter(g=>visibleIndices(g).length>0).length}`;$("badgeGrid").innerHTML=gates.map(g=>`<div class="badge ${gateSolved(g)?"":"locked"}"><div class="emoji">${g.badgeEmoji}</div><b>${g.badge}</b><span class="small">${gateSolved(g)?"Insignă obținută":"Continuă să exersezi"}</span></div>`).join("");}
+function restart(){if(confirm("Vrei să reiei misiunea? Progresul sesiunii curente va fi șters.")){score=0;answered={};hintsUsed={};current=null;sessionId=null;sessionRecorded=false;sessionStartedAt=null;updateScore();showOnly("startScreen");saveState();}}
+let activeGateId = "numbers";
+let gameMeta = {grade:"Clasa a IV-a",subject:"Interdisciplinar",theme:"",competency:""};
+function escapeHtml(s){return String(s??"").replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;").replaceAll('"',"&quot;").replaceAll("'","&#39;")}
+function escapeAttr(s){return escapeHtml(s)}
+let teacherReturnScreen = "startScreen";
+function showTeacher(){
+  const visible=["startScreen","mapScreen","questionScreen","endScreen"].find(id=>!$(id).classList.contains("hide"));
+  teacherReturnScreen=visible||"startScreen";
+  $("gateSelect").innerHTML=gates.map(g=>`<option value="${g.id}">${g.emoji} ${escapeHtml(g.name)}</option>`).join("");
+  $("gateSelect").value=activeGateId;
+  const savedMeta=localStorage.getItem("misiunea4x_meta");
+  if(savedMeta){try{gameMeta={...gameMeta,...JSON.parse(savedMeta)}}catch(e){}}
+  $("metaGrade").value=gameMeta.grade||"Clasa a IV-a";
+  $("metaSubject").value=gameMeta.subject||"Interdisciplinar";
+  $("metaTheme").value=gameMeta.theme||"";
+  $("metaCompetency").value=gameMeta.competency||"";
+  $("setName").value=gameMeta.theme||"";
+  renderEditor();refreshSavedSets();showOnly("teacherScreen");renderLibrary();renderReports();
+}
+function renderEditor(){
+ const g=gates.find(x=>x.id===activeGateId);
+ if(!g)return;
+ $("customQuestions").innerHTML=`<div class="field"><label for="gateName">Denumirea porții</label><input id="gateName" value="${escapeAttr(g.name)}"></div><div class="field"><label for="gateDesc">Descrierea porții</label><input id="gateDesc" value="${escapeAttr(g.desc)}"></div><div class="field"><label for="gateCurriculum">Notă didactică / obiectiv</label><textarea id="gateCurriculum">${escapeHtml(g.curriculum||"")}</textarea></div>`+
+ g.questions.map((q,qi)=>`<article class="custom-item" data-qcard="${qi}">
+   <div class="row between"><strong>Itemul ${qi+1}</strong><button class="danger" data-delete="${qi}" type="button">Șterge itemul</button></div>
+   <div class="editor-grid">
+    <div class="field"><label>Tipul itemului</label><input data-edit="${qi}-type" value="${escapeAttr(q.type||"Nivel avansat")}"></div>
+    <div class="field"><label>Format de răspuns</label><select data-edit="${qi}-kind"><option value="choice" ${q.kind!=="text"?"selected":""}>Alegere multiplă</option><option value="text" ${q.kind==="text"?"selected":""}>Răspuns scris</option></select></div>
+    <div class="field"><label>Dificultate</label><select data-edit="${qi}-difficulty"><option ${q.difficulty==="Ușor"?"selected":""}>Ușor</option><option ${(!q.difficulty||q.difficulty==="Mediu")?"selected":""}>Mediu</option><option ${q.difficulty==="Avansat"?"selected":""}>Avansat</option></select></div>
+   </div>
+   <div class="field"><label>Cerință</label><textarea data-edit="${qi}-q">${escapeHtml(q.q)}</textarea></div>
+   <div class="field"><label>Variante de răspuns (câte una pe rând)</label><textarea data-options="${qi}">${escapeHtml((q.options||[]).join("\n"))}</textarea><span class="small">Pentru itemii cu alegere multiplă, scrie fiecare variantă pe un rând separat.</span></div>
+   <div class="field"><label>Răspuns corect</label><input data-edit="${qi}-answer" value="${escapeAttr(q.answer)}"></div>
+   <div class="field"><label>Context funcțional (situație reală)</label><textarea data-edit="${qi}-context">${escapeHtml(q.context||"")}</textarea><span class="small">Ex.: cumpărături, măsurători, orar, hartă, organizarea unei activități.</span></div><div class="field"><label>Explicație / feedback după răspuns</label><textarea data-edit="${qi}-explain">${escapeHtml(q.explain||"")}</textarea></div>
+   <div class="field"><label>Indiciu</label><textarea data-edit="${qi}-hint">${escapeHtml(q.hint||"")}</textarea></div>
+  </article>`).join("")+
+ (g.questions.length? "":"<p class='notice'>Această poartă nu are încă itemi. Folosește butonul „Adaugă un item”.</p>");
+ $("gateName").addEventListener("change",e=>{g.name=e.target.value.trim()||g.name;renderMapIfVisible();});
+ $("gateDesc").addEventListener("change",e=>{g.desc=e.target.value.trim();});
+ $("gateCurriculum").addEventListener("change",e=>{g.curriculum=e.target.value.trim();});
+ document.querySelectorAll("[data-delete]").forEach(b=>b.addEventListener("click",()=>{if(g.questions.length<=1&&!confirm("Vrei să lași această poartă fără itemi?"))return;g.questions.splice(+b.dataset.delete,1);renderEditor();}));
+}
+function renderMapIfVisible(){if(!$("mapScreen").classList.contains("hide"))renderMap();}
+function collectEditor(){
+ const g=gates.find(x=>x.id===activeGateId);
+ if(!g)return;
+ g.name=$("gateName").value.trim()||g.name;g.desc=$("gateDesc").value.trim();g.curriculum=$("gateCurriculum").value.trim();
+ const next=[];
+ document.querySelectorAll("[data-qcard]").forEach(card=>{
+  const qi=+card.dataset.qcard;
+  const get=f=>card.querySelector(`[data-edit="${qi}-${f}"]`);
+  const old=g.questions[qi]||{};
+  const options=(card.querySelector(`[data-options="${qi}"]`).value||"").split(/\r?\n/).map(s=>s.trim()).filter(Boolean);
+  const answer=get("answer").value.trim();
+  next.push({...old,type:get("type").value.trim()||"Nivel avansat",difficulty:get("difficulty").value,kind:get("kind").value,q:get("q").value.trim(),options:get("kind").value==="text"?[]:options,answer,context:get("context").value.trim(),explain:get("explain").value.trim(),hint:get("hint").value.trim()});
+ });
+ g.questions=next;
+}
+function collectMeta(){
+ gameMeta={grade:$("metaGrade").value,subject:$("metaSubject").value,theme:$("metaTheme").value.trim(),competency:$("metaCompetency").value.trim()};
+ try{localStorage.setItem("misiunea4x_meta",JSON.stringify(gameMeta))}catch(e){}
+}
+function validateGate(g){
+ for(let i=0;i<g.questions.length;i++){
+  const q=g.questions[i];
+  if(!q.q||!q.answer)return `Itemul ${i+1}: completează cerința și răspunsul corect.`;
+  if(q.kind==="text"){if(q.options.length!==0)return `Itemul ${i+1}: pentru răspuns scris, elimină variantele de răspuns.`;}else{if(q.options.length<2)return `Itemul ${i+1}: adaugă cel puțin două variante de răspuns.`;if(!q.options.some(o=>normalizeAnswer(o)===normalizeAnswer(q.answer)))return `Itemul ${i+1}: răspunsul corect trebuie să coincidă cu una dintre variante.`;}
+ }
+ return "";
+}
+function saveCustom(){
+ collectEditor();collectMeta();
+ for(const g of gates){const err=validateGate(g);if(err){$("customStatus").textContent=`Verificare necesară (${g.name}): ${err}`;return;}}
+ try{localStorage.setItem("misiunea4x_custom",JSON.stringify(gates));localStorage.setItem("misiunea4x_meta",JSON.stringify(gameMeta));$("customStatus").textContent="Modificările au fost salvate în acest browser.";answered={};hintsUsed={};score=0;updateScore();refreshSavedSets();renderEditor();}
+ catch(e){$("customStatus").textContent="Salvarea locală nu a reușit. Exportă setul JSON pentru a păstra o copie."}
+}
+function getSetStore(){try{return JSON.parse(localStorage.getItem("misiunea4x_sets")||"{}")}catch(e){return {}}}
+function refreshSavedSets(){
+ const sets=getSetStore();const select=$("savedSets");if(!select)return;
+ const current=select.value;select.innerHTML='<option value="">Alege un set salvat</option>'+Object.keys(sets).sort().map(k=>`<option value="${escapeAttr(k)}">${escapeHtml(k)}</option>`).join("");
+ if(sets[current])select.value=current;
+}
+function saveAsSet(){
+ collectEditor();collectMeta();
+ for(const g of gates){const err=validateGate(g);if(err){$("customStatus").textContent=`Nu pot salva setul: ${g.name} — ${err}`;return;}}
+ const name=$("setName").value.trim()||gameMeta.theme||"Set fără titlu";
+ const sets=getSetStore();sets[name]={gates:structuredClone(gates),meta:{...gameMeta},savedAt:new Date().toISOString()};
+ try{localStorage.setItem("misiunea4x_sets",JSON.stringify(sets));localStorage.setItem("misiunea4x_custom",JSON.stringify(gates));$("customStatus").textContent=`Setul „${name}” a fost salvat.`;refreshSavedSets();}
+ catch(e){$("customStatus").textContent="Spațiul local de stocare este indisponibil. Exportă setul JSON."}
+}
+function loadSet(){
+ const name=$("savedSets").value,sets=getSetStore();if(!name||!sets[name]){$("customStatus").textContent="Alege mai întâi un set salvat.";return;}
+ gates=structuredClone(sets[name].gates);gameMeta={...gameMeta,...(sets[name].meta||{})};activeGateId=gates[0]?.id||"numbers";
+ try{localStorage.setItem("misiunea4x_custom",JSON.stringify(gates));localStorage.setItem("misiunea4x_meta",JSON.stringify(gameMeta))}catch(e){}
+ showTeacher();$("customStatus").textContent=`Setul „${name}” a fost încărcat.`;
+}
+function exportSet(){
+ collectEditor();collectMeta();
+ const payload={app:"Misiunea 4X",version:"3.0",brand:"CRED ÎN EDUCAȚIE",meta:gameMeta,gates};
+ const blob=new Blob([JSON.stringify(payload,null,2)],{type:"application/json"});
+ const url=URL.createObjectURL(blob),a=document.createElement("a");a.href=url;a.download=(($("setName").value.trim()||"Misiunea_4X").replace(/[^\p{L}\p{N}_-]+/gu,"_"))+".json";document.body.appendChild(a);a.click();a.remove();URL.revokeObjectURL(url);
+ $("customStatus").textContent="Setul a fost exportat în format JSON.";
+}
+function importSetFile(file){
+ if(!file)return;const reader=new FileReader();
+ reader.onload=()=>{
+  try{
+   const data=JSON.parse(reader.result);const imported=Array.isArray(data)?data:data.gates;
+   if(!Array.isArray(imported)||!imported.length)throw new Error("Fișierul nu conține porți de joc valide.");
+   for(const g of imported){if(!g.id||!Array.isArray(g.questions))throw new Error("Structura porților nu este validă.");for(const q of g.questions){if(!Array.isArray(q.options))q.options=[];if(!q.difficulty)q.difficulty="Mediu";}}
+   gates=imported;gameMeta={...gameMeta,...(data.meta||{})};activeGateId=gates[0].id;
+   try{localStorage.setItem("misiunea4x_custom",JSON.stringify(gates));localStorage.setItem("misiunea4x_meta",JSON.stringify(gameMeta))}catch(e){}
+   showTeacher();$("customStatus").textContent="Setul JSON a fost importat. Verifică itemii și salvează modificările.";
+  }catch(e){$("customStatus").textContent="Import nereușit: "+e.message;}
+ };
+ reader.readAsText(file);
+}
+function addQuestion(){
+ collectEditor();const g=gates.find(x=>x.id===activeGateId);
+ g.questions.push({type:"Nivel avansat nouă",difficulty:"Mediu",kind:"choice",q:"Scrie cerința aici.",options:["Varianta A","Varianta B","Varianta C","Varianta D"],answer:"Varianta A",context:"Descrie situația reală în care se folosește această sarcină.",explain:"Explică de ce răspunsul este corect.",hint:"Adaugă un indiciu care susține gândirea elevului."});
+ renderEditor();$("customStatus").textContent="Item nou adăugat. Completează toate câmpurile și salvează.";
+}
+
+function getReports(){try{return JSON.parse(localStorage.getItem("misiunea4x_reports")||"[]")}catch(e){return []}}
+function recordSessionReport(){
+ if(sessionRecorded||!sessionId)return;
+ const total=totalCount(), solved=solvedCount();
+ const itemRows=[];
+ gates.forEach(g=>visibleIndices(g).forEach(i=>{const q=g.questions[i];
+  const key=g.id+"-"+i,rec=answered[key]||{correct:false,attempts:0,points:0,last:""};
+  itemRows.push({gate:g.name,question:q.q,context:q.context||"",correct:!!rec.correct,attempts:rec.attempts||0,points:rec.points||0,hintUsed:!!hintsUsed[key],lastAnswer:rec.last||"",difficulty:q.difficulty||"Mediu"});
+ }));
+ const gateRows=gates.map(g=>{
+  const ids=visibleIndices(g),rows=ids.map(i=>answered[g.id+"-"+i]).filter(Boolean);
+  return {gate:g.name,total:ids.length,correct:ids.filter(i=>answered[g.id+"-"+i]?.correct).length,attempts:rows.reduce((s,r)=>s+(r.attempts||0),0),hints:ids.filter(i=>hintsUsed[g.id+"-"+i]).length};
+ });
+ const report={id:sessionId,player,mode,level,startedAt:sessionStartedAt||new Date().toISOString(),finishedAt:new Date().toISOString(),score,total,solved,percent:Math.round(solved/Math.max(total,1)*100),grade:gameMeta.grade||"Clasa a IV-a",subject:gameMeta.subject||"Interdisciplinar",theme:gameMeta.theme||"Misiunea 4X",competency:gameMeta.competency||"",gateRows,itemRows};
+ const reports=getReports();reports.unshift(report);
+ try{localStorage.setItem("misiunea4x_reports",JSON.stringify(reports.slice(0,50)));sessionRecorded=true;}catch(e){}
+}
+function renderCurrentReport(){
+ const total=totalCount(),solved=solvedCount(),pct=Math.round(solved/Math.max(total,1)*100);
+ const gateRows=gates.map(g=>{const ids=visibleIndices(g);return {name:g.name,total:ids.length,correct:ids.filter(i=>answered[g.id+"-"+i]?.correct).length,attempts:ids.reduce((s,i)=>s+(answered[g.id+"-"+i]?.attempts||0),0),hints:ids.filter(i=>hintsUsed[g.id+"-"+i]).length}});
+ $("currentReport").innerHTML=`<h4>Sesiunea curentă${player?" — "+escapeHtml(player):""}</h4>
+ <div class="metric-row"><div class="metric"><span>Progres</span><strong>${solved}/${total}</strong></div><div class="metric"><span>Realizare</span><strong>${pct}%</strong></div><div class="metric"><span>Puncte</span><strong>${score}</strong></div><div class="metric"><span>Indicii folosite</span><strong>${Object.values(hintsUsed).filter(Boolean).length}</strong></div></div>
+ <p class="small">Clasă: ${escapeHtml(gameMeta.grade||"Clasa a IV-a")} · Disciplina: ${escapeHtml(gameMeta.subject||"Interdisciplinar")} · Temă: ${escapeHtml(gameMeta.theme||"Misiunea 4X")}</p>
+ <table class="report-table"><thead><tr><th>Poartă</th><th>Corecte</th><th>Încercări</th><th>Indicii</th></tr></thead><tbody>${gateRows.map(r=>`<tr><td>${escapeHtml(r.name)}</td><td>${r.correct}/${r.total}</td><td>${r.attempts}</td><td>${r.hints}</td></tr>`).join("")}</tbody></table>`;
+}
+function renderReports(){
+ renderCurrentReport();
+ const reports=getReports();
+ $("historyReports").innerHTML=reports.length?reports.map(r=>`<article class="report-card"><div class="row between"><h4>${escapeHtml(r.theme||"Misiunea 4X")}</h4><span class="state">${r.percent}%</span></div><p><strong>${escapeHtml(r.player||"Explorator")}</strong> · ${escapeHtml(r.grade||"")} · ${escapeHtml(r.subject||"")}</p><p class="small">${new Date(r.finishedAt).toLocaleString("ro-RO")} · ${r.solved}/${r.total} provocări · ${r.score} puncte · ${escapeHtml(r.mode==="team"?"Echipă":"Individual")}</p><details><summary>Detalii pe porți și itemi</summary><table class="report-table"><thead><tr><th>Poartă</th><th>Rezultat</th><th>Încercări</th><th>Indiciu</th></tr></thead><tbody>${(r.itemRows||[]).map(it=>`<tr><td>${escapeHtml(it.gate)}</td><td>${it.correct?"Corect":"Nerezolvat"}</td><td>${it.attempts}</td><td>${it.hintUsed?"Da":"Nu"}</td></tr>`).join("")}</tbody></table></details></article>`).join(""):"<p class='notice'>Nu există încă sesiuni finalizate. După ce un elev sau o echipă rezolvă toate provocările, rezultatele vor apărea aici.</p>";
+}
+function renderLibrary(){
+ const sets=getSetStore(),query=($("librarySearch").value||"").trim().toLocaleLowerCase("ro");
+ const rows=Object.entries(sets).filter(([name,set])=>{
+  const meta=set.meta||{};return [name,meta.grade,meta.subject,meta.theme,meta.competency].join(" ").toLocaleLowerCase("ro").includes(query);
+ }).sort((a,b)=>a[0].localeCompare(b[0],"ro"));
+ $("libraryCards").innerHTML=rows.length?rows.map(([name,set])=>`<article class="library-card"><h4>${escapeHtml(name)}</h4><p><strong>${escapeHtml(set.meta?.grade||"Clasa nespecificată")}</strong> · ${escapeHtml(set.meta?.subject||"Disciplină nespecificată")}</p><p>${escapeHtml(set.meta?.theme||"Fără temă introdusă")}</p><p class="small">${(set.gates||[]).reduce((n,g)=>n+(g.questions||[]).length,0)} itemi · Salvat: ${set.savedAt?new Date(set.savedAt).toLocaleDateString("ro-RO"):"dată indisponibilă"}</p><button class="teal" data-library-load="${encodeURIComponent(name)}">Încarcă în atelier</button></article>`).join(""):"<p class='notice'>Nu am găsit seturi salvate pentru această căutare. Creează un set și folosește „Salvează ca set nou”.</p>";
+ document.querySelectorAll("[data-library-load]").forEach(b=>b.addEventListener("click",()=>{$("savedSets").value=decodeURIComponent(b.dataset.libraryLoad);loadSet();}));
+}
+function exportReportCsv(){
+ const reports=getReports();
+ if(!reports.length){$("customStatus").textContent="Nu există rapoarte salvate pentru export.";return;}
+ const rows=[["Data","Elev/Echipă","Clasa","Disciplina","Tema","Mod","Puncte","Rezolvate","Total","Procent","Poartă","Item","Corect","Încercări","Indiciu"]];
+ reports.forEach(r=>(r.itemRows||[]).forEach(it=>rows.push([r.finishedAt,r.player,r.grade,r.subject,r.theme,r.mode,r.score,r.solved,r.total,r.percent,it.gate,it.question,it.correct?"Da":"Nu",it.attempts,it.hintUsed?"Da":"Nu"])));
+ const csv=rows.map(row=>row.map(v=>'"'+String(v??"").replaceAll('"','""')+'"').join(";")).join("\r\n");
+ const blob=new Blob(["\ufeff"+csv],{type:"text/csv;charset=utf-8"}),url=URL.createObjectURL(blob),a=document.createElement("a");a.href=url;a.download="raport_Misiunea_4X.csv";document.body.appendChild(a);a.click();a.remove();URL.revokeObjectURL(url);
+}
+function resetCustom(){
+ if(!confirm("Restaurezi întrebările inițiale? Modificările nesalvate vor fi pierdute."))return;
+ gates=structuredClone(originalGates);activeGateId="numbers";gameMeta={grade:"Clasa a IV-a",subject:"Interdisciplinar",theme:"",competency:""};
+ try{localStorage.removeItem("misiunea4x_custom");localStorage.removeItem("misiunea4x_meta")}catch(e){}
+ showTeacher();$("customStatus").textContent="Jocul inițial a fost restaurat.";
+}
+document.querySelectorAll("[data-mode]").forEach(b=>b.addEventListener("click",()=>{mode=b.dataset.mode;document.querySelectorAll("[data-mode]").forEach(x=>x.classList.toggle("selected",x===b));}));
+$("startBtn").addEventListener("click",startGame);
+$("submitText").addEventListener("click",submitTextAnswer);$("textAnswer").addEventListener("keydown",e=>{if(e.key==="Enter")submitTextAnswer()});$("restartTop").addEventListener("click",restart);$("backMap").addEventListener("click",()=>{showOnly("mapScreen");renderMap()});$("nextQuestion").addEventListener("click",nextQuestion);
+$("hintBtn").addEventListener("click",()=>{if(!current)return;const key=current.gid+"-"+current.index;hintsUsed[key]=true;const g=gates.find(x=>x.id===current.gid);$("hintBox").textContent=(g.questions[current.index].hint||"Recitește cerința și identifică informațiile importante.");$("hintBox").classList.remove("hide");$("hintBtn").disabled=true;$("hintStatus").textContent="Indiciul a fost consultat.";saveState()});
+$("showReflection").addEventListener("click",()=>$("reflection").classList.toggle("hide"));$("saveReflection").addEventListener("click",()=>{try{localStorage.setItem("misiunea4x_reflection",JSON.stringify({reflection:$("reflectionText").value,next:$("nextStep").value}));$("reflectionSaved").textContent="Reflecția a fost salvată local."}catch(e){$("reflectionSaved").textContent="Nu s-a putut salva."}});
+$("playAgain").addEventListener("click",()=>{score=0;answered={};hintsUsed={};current=null;sessionId=null;sessionRecorded=false;sessionStartedAt=null;updateScore();saveState();showOnly("startScreen");});$("backMapEnd").addEventListener("click",()=>{showOnly("mapScreen");renderMap()});
+$("printCertificate").addEventListener("click",()=>{const w=window.open("","_blank");if(!w){alert("Permite deschiderea ferestrei pentru a tipări diploma.");return;}w.document.write(`<html lang="ro"><head><meta charset="UTF-8"><title>Diplomă Misiunea 4X</title><style>body{font-family:Georgia,serif;text-align:center;padding:60px;border:12px double #6757d9;color:#1f2a44;margin:25px}h1{font-size:42px;color:#5143bc}p{font-size:20px;line-height:1.6}.seal{font-size:55px}</style></head><body><div class="seal">✦ 4X ✦</div><h1>Diplomă de Salvator al Cunoașterii</h1><p>Se acordă exploratorului / echipei</p><h2>${escapeAttr(player||"Explorator")}</h2><p>pentru curiozitate, perseverență și participarea la Misiunea 4X.</p><p><strong>Punctaj:</strong> ${score} puncte · <strong>Provocări rezolvate:</strong> ${solvedCount()}/${totalCount()}</p><p>Învață. Verifică. Explică. Progresează.</p></body></html>`);w.document.close();w.print();});
+$("teacherToggle").addEventListener("click",showTeacher);
+$("closeTeacher").addEventListener("click",()=>{collectEditor();saveCustom();showOnly(teacherReturnScreen);if(teacherReturnScreen==="mapScreen")renderMap();if(teacherReturnScreen==="questionScreen"&&current)renderQuestion();});
+$("saveCustom").addEventListener("click",saveCustom);
+$("saveSet").addEventListener("click",saveAsSet);
+$("loadSet").addEventListener("click",loadSet);
+$("exportSet").addEventListener("click",exportSet);
+$("importSet").addEventListener("click",()=>$("importFile").click());
+$("importFile").addEventListener("change",e=>{importSetFile(e.target.files[0]);e.target.value="";});
+$("resetCustom").addEventListener("click",resetCustom);
+$("gateSelect").addEventListener("change",()=>{collectEditor();activeGateId=$("gateSelect").value;renderEditor();});
+$("addQuestion").addEventListener("click",addQuestion);
+$("refreshLibrary").addEventListener("click",renderLibrary);
+$("librarySearch").addEventListener("input",renderLibrary);
+$("refreshReports").addEventListener("click",renderReports);
+$("exportReport").addEventListener("click",exportReportCsv);
+$("clearReports").addEventListener("click",()=>{if(confirm("Ștergi toate rapoartele salvate local pe acest dispozitiv?")){localStorage.removeItem("misiunea4x_reports");renderReports();$("customStatus").textContent="Istoricul rapoartelor a fost șters de pe acest dispozitiv."}});
+
+
+document.addEventListener("keydown",e=>{
+ if(e.key==="Escape" && !$("teacherScreen").classList.contains("hide")){
+   collectEditor();saveCustom();showOnly(teacherReturnScreen);
+   if(teacherReturnScreen==="mapScreen")renderMap();
+   if(teacherReturnScreen==="questionScreen"&&current)renderQuestion();
+ }
+});
+try {
+  loadCustom();
+  updateScore();
+} catch (err) {
+  console.error("Eroare la inițializarea Misiunii 4X:", err);
+  const fatal = document.createElement("div");
+  fatal.style.cssText = "margin:20px;padding:18px;border:2px solid #c0395a;border-radius:14px;background:#fff0f2;color:#7d1730;font:16px/1.5 system-ui";
+  fatal.innerHTML = "<strong>Misiunea nu s-a putut inițializa.</strong><br>Reîncarcă fișierul într-un browser actualizat. Dacă problema persistă, trimite profesorului mesajul: «eroare la inițializare»." ;
+  document.body.prepend(fatal);
+}
+</script>
+</body>
+</html>
